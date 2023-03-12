@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react'
 import "./App.css";
 import { BASE_URL, API_KEY } from "./constants";
 import axios from 'axios';
+import NasaDetail from './components/NasaDetail'
 
 function App() {
   
   const [nasaData, setNasaData] = useState([]);
+
 
   useEffect(() => {
   console.log('response started');
@@ -19,10 +21,7 @@ function App() {
 
   return (
     <div className="App">
-      <p>
-        Read through the instructions in the README.md file to build your NASA
-        app! Have fun <span role="img" aria-label='go!'>🚀</span>!
-      </p>
+      <NasaDetail nasaData={nasaData}/>
     </div>
   );
 }
