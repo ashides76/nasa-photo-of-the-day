@@ -6,22 +6,23 @@ import NasaDetail from './components/NasaDetail'
 
 function App() {
   
-  const [nasaData, setNasaData] = useState([]);
+  const [nasaData, setNasaData] = useState();
+  const [date, setDate] = useState('2023-03-06');
+  // console.log(date);
 
-
+ 
   useEffect(() => {
-  console.log('response started');
-    axios.get(`${BASE_URL}?api_key=${API_KEY}`)
+    axios.get(`${BASE_URL}?api_key=${API_KEY}&date=${date}`)
       .then(res => {
-        // console.log(res);
+        // console.log(res.data);
         setNasaData(res.data);
       })
       .catch(err => console.log('error getting data from NASA API', err))
-  }, []);
+  }, [date]);
 
   return (
     <div className="App">
-      <NasaDetail nasaData={nasaData}/>
+      {nasaData && <NasaDetail nasaData={nasaData} setDate={setDate}/>}
     </div>
   );
 }
